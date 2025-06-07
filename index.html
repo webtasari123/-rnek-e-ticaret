@@ -3,513 +3,525 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title> E-Ticaret </title>
+<title>Kurumsal Web Sitesi Demo</title>
 <style>
+  /* Reset & base */
   * {
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f4f6f8;
-    margin: 0;
-    padding: 0;
-    color: #222;
-    transition: background-color 0.3s, color 0.3s;
+    background: #f4f7fb;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
   }
-  body.dark-mode {
-    background: #121212;
-    color: #eee;
+  a {
+    color: #0b5ed7;
+    text-decoration: none;
+    transition: color 0.3s;
   }
-  header {
-    background-color: #1e1e2f;
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  a:hover {
+    color: #084298;
   }
-  body.dark-mode header {
-    background-color: #222233;
+  /* Container */
+  .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
   }
-  header h1 {
-    margin: 0;
-    font-weight: 700;
-  }
+
+  /* Navbar */
   nav {
-    display: flex;
-    gap: 15px;
-  }
-  nav button {
-    background: transparent;
-    border: none;
+    background: #0b5ed7;
     color: white;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: 600;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  nav button:hover, nav button.active {
-    background-color: #4a90e2;
-  }
-
-  main {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 15px;
-  }
-
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
-    gap: 25px;
-  }
-
-  .product-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgb(0 0 0 / 0.1);
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease, background-color 0.3s, color 0.3s;
-    color: #222;
-  }
-  body.dark-mode .product-card {
-    background: #1e1e2f;
-    color: #ddd;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
-  }
-  .product-card:hover {
-    transform: translateY(-5px);
-  }
-  .product-img {
-    width: 100%;
-    height: 180px;
-    object-fit: contain;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    background: #f9f9f9;
-    transition: background-color 0.3s;
-  }
-  body.dark-mode .product-img {
-    background: #2a2a3d;
-  }
-  .product-name {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-  .product-desc {
-    font-size: 14px;
-    margin-bottom: 12px;
-    flex-grow: 1;
-  }
-  .product-price {
-    font-weight: 700;
-    color: #007BFF;
-    font-size: 17px;
-    margin-bottom: 15px;
-  }
-  body.dark-mode .product-price {
-    color: #66aaff;
-  }
-  .btn-add {
-    padding: 10px 0;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .btn-add:hover {
-    background-color: #0056b3;
-  }
-
-  /* Sepet */
-  aside.cart {
+    padding: 1rem 0;
     position: fixed;
-    right: 0;
-    top: 0;
-    background: white;
-    width: 350px;
-    height: 100vh;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.15);
-    padding: 20px;
-    overflow-y: auto;
-    transform: translateX(100%);
-    transition: transform 0.3s ease, background-color 0.3s, color 0.3s;
-    display: flex;
-    flex-direction: column;
-    z-index: 20;
-    color: #222;
+    width: 100%;
+    top: 0; left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgb(11 94 215 / 0.4);
   }
-  body.dark-mode aside.cart {
-    background: #222233;
-    color: #ddd;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.6);
-  }
-  aside.cart.active {
-    transform: translateX(0);
-  }
-  aside.cart h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 24px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-  }
-  body.dark-mode aside.cart h2 {
-    border-color: #444466;
-  }
-  .cart-item {
+  nav .container {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    justify-content: space-between;
   }
-  .cart-item img {
+  nav .logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.8rem;
+  }
+  nav ul li {
+    font-weight: 600;
+  }
+  nav ul li a {
+    color: white;
+    font-size: 1rem;
+    padding: 0.4rem 0;
+    display: inline-block;
+    border-bottom: 3px solid transparent;
+  }
+  nav ul li a:hover,
+  nav ul li a.active {
+    border-bottom: 3px solid #084298;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  /* Sections */
+  section {
+    padding: 100px 0 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+  }
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero / Anasayfa */
+  #home {
+    background: linear-gradient(135deg, #0b5ed7 0%, #084298 100%);
+    color: white;
+    text-align: center;
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+  #home h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1.5px;
+  }
+  #home p {
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.5;
+  }
+
+  /* Hakkımızda */
+  #about .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+  }
+  #about .text {
+    flex: 1 1 350px;
+  }
+  #about h2 {
+    color: #0b5ed7;
+    margin-bottom: 1rem;
+  }
+  #about p {
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  #about img {
+    flex: 1 1 350px;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  /* Hizmetler */
+  #services {
+    background: #fff;
+    text-align: center;
+  }
+  #services h2 {
+    color: #0b5ed7;
+    margin-bottom: 2rem;
+  }
+  .service-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .service-card {
+    background: #f4f7fb;
+    padding: 1.8rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgb(11 94 215 / 0.15);
+    flex: 1 1 260px;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+  }
+  .service-card h3 {
+    color: #084298;
+    margin-bottom: 0.8rem;
+  }
+  .service-card p {
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  /* Referanslar */
+  #references {
+    background: #f9fbfd;
+    text-align: center;
+    padding-bottom: 80px;
+  }
+  #references h2 {
+    color: #0b5ed7;
+    margin-bottom: 2rem;
+  }
+  .refs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .ref-card {
+    background: white;
+    padding: 1.5rem 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgb(11 94 215 / 0.15);
+    max-width: 320px;
+    flex: 1 1 300px;
+  }
+  .ref-card p {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1.2rem;
+  }
+  .ref-card .person {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ref-card .person img {
     width: 50px;
     height: 50px;
-    object-fit: contain;
-    border-radius: 6px;
-    margin-right: 10px;
+    border-radius: 50%;
   }
-  .cart-item-details {
-    flex-grow: 1;
-  }
-  .cart-item-name {
+  .ref-card .person span {
     font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 4px;
-  }
-  .cart-item-price {
-    color: #007BFF;
-    font-weight: 700;
-  }
-  body.dark-mode .cart-item-price {
-    color: #66aaff;
-  }
-  .cart-item-quantity {
-    margin-left: 10px;
-    font-size: 14px;
-    color: #444;
-  }
-  body.dark-mode .cart-item-quantity {
-    color: #aaa;
-  }
-  .cart-item-remove {
-    cursor: pointer;
-    color: red;
-    font-weight: 700;
-    font-size: 18px;
-    padding: 0 6px;
-  }
-  .cart-total {
-    font-weight: 700;
-    font-size: 20px;
-    margin-top: auto;
-    border-top: 1px solid #ddd;
-    padding-top: 15px;
-    color: #222;
-  }
-  body.dark-mode .cart-total {
-    color: #ddd;
-    border-color: #444466;
-  }
-  .cart-close-btn {
-    background: none;
-    border: none;
-    font-size: 26px;
-    cursor: pointer;
-    align-self: flex-end;
-    margin-bottom: 10px;
-    color: inherit;
+    color: #084298;
   }
 
-  /* Sepeti açan buton */
-  .cart-toggle {
-    position: fixed;
-    top: 20px;
-    right: 80px;
-    background-color: #007BFF;
-    color: white;
+  /* İletişim */
+  #contact {
+    background: #fff;
+  }
+  #contact h2 {
+    color: #0b5ed7;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  form {
+    max-width: 480px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  input, textarea {
+    padding: 0.9rem 1.2rem;
+    border-radius: 8px;
+    border: 1.8px solid #ccc;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #0b5ed7;
+  }
+  button {
+    background: #0b5ed7;
     border: none;
-    padding: 14px 18px;
-    border-radius: 50px;
-    cursor: pointer;
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
     font-weight: 700;
-    z-index: 30;
-    box-shadow: 0 4px 8px rgba(0,123,255,0.4);
+    font-size: 1.1rem;
+    cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  .cart-toggle:hover {
-    background-color: #0056b3;
+  button:hover {
+    background: #084298;
   }
 
-  /* Karanlık mod düğmesi */
-  .dark-mode-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #444;
+  /* Footer */
+  footer {
+    background: #0b5ed7;
     color: white;
-    border: none;
-    padding: 14px 18px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: 700;
-    z-index: 30;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    transition: background-color 0.3s ease;
+    text-align: center;
+    padding: 1.2rem 0;
+    margin-top: 40px;
   }
-  .dark-mode-toggle:hover {
-    background-color: #666;
+  footer a {
+    margin: 0 0.6rem;
+    color: white;
+    font-size: 1.3rem;
+    vertical-align: middle;
+  }
+  footer a:hover {
+    color: #ccc;
   }
 
   /* Responsive */
-  @media(max-width: 768px) {
-    aside.cart {
-      width: 100%;
+  @media (max-width: 900px) {
+    #about .container {
+      flex-direction: column;
+      text-align: center;
     }
-    main {
-      margin: 20px 15px;
+    #about img {
+      max-width: 80%;
+      margin: 0 auto;
     }
-    .cart-toggle {
-      right: 100px;
+    nav ul {
+      display: none;
+      flex-direction: column;
+      background: #0b5ed7;
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      height: calc(100% - 60px);
+      padding-top: 2rem;
+      gap: 1rem;
+      box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+      z-index: 999;
     }
-    .dark-mode-toggle {
-      right: 20px;
+    nav ul.open {
+      display: flex;
+    }
+    .hamburger {
+      display: flex;
     }
   }
+body {
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Karanlık mod açıkken */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* İstersen header, footer veya başka bölümler için ayrı renkler */
+header, footer {
+  background-color: #f5f5f5;
+  transition: background-color 0.3s;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1e1e1e;
+}
+
+
 </style>
 </head>
 <body>
 
-<header>
-  <h1>örnek E-Ticaret</h1>
-</header>
+<nav>
+  <div class="container">
+    <div class="logo">KurumsalCo</div>
+    <ul id="nav-links">
+      <li><a href="#home" class="active">Anasayfa</a></li>
+      <li><a href="#about">Hakkımızda</a></li>
+      <li><a href="#services">Hizmetler</a></li>
+      <li><a href="#references">Referanslar</a></li>
+      <li><a href="#contact">İletişim</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+  </div>
+</nav>
 
-<button class="cart-toggle" aria-label="Sepeti aç">Sepetim 🛒 (<span id="cart-count">0</span>)</button>
-<button class="dark-mode-toggle" aria-label="Karanlık mod aç/kapa">Karanlık Mod</button>
+<section id="home" class="visible">
+  <h1>KurumsalCo'ya Hoşgeldiniz</h1>
+  <p>İşinizi büyütmek için yenilikçi çözümler, kaliteli hizmetler ve profesyonel destek sunuyoruz.</p>
+</section>
 
-<main>
-  <section class="products-grid" id="products-grid">
-    <!-- Ürünler JavaScript ile eklenecek -->
-  </section>
-</main>
+<section id="about">
+  <div class="container">
+    <div class="text">
+      <h2>Hakkımızda</h2>
+      <p><strong>Misyonumuz:</strong> Müşterilerimize en iyi hizmeti sunmak, sürdürülebilir büyümeyi desteklemek.</p>
+      <p><strong>Vizyonumuz:</strong> Sektörde lider olmak, yeniliklerle öncü bir marka yaratmak.</p>
+      <p><strong>Tarihçe:</strong> 2010 yılında kurulan KurumsalCo, 14 yıldır güven ve kaliteyle hizmet vermektedir.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Ofis Görseli" />
+  </div>
+</section>
 
-<aside class="cart" id="cart" aria-label="Alışveriş Sepeti">
-  <button class="cart-close-btn" aria-label="Sepeti kapat">&times;</button>
-  <h2>Alışveriş Sepeti</h2>
-  <div id="cart-items"></div>
-  <div class="cart-total" id="cart-total">Toplam: 0 ₺</div>
-</aside>
+<section id="services">
+  <div class="container">
+    <h2>Hizmetlerimiz</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <h3>Danışmanlık</h3>
+        <p>Profesyonel danışmanlık hizmetlerimizle iş süreçlerinizi optimize ediyoruz.</p>
+      </div>
+      <div class="service-card">
+        <h3>Yazılım Geliştirme</h3>
+        <p>İhtiyacınıza özel yazılım çözümleri ile verimliliğinizi artırıyoruz.</p>
+      </div>
+      <div class="service-card">
+        <h3>Dijital Pazarlama</h3>
+        <p>Markanızı dijital platformlarda öne çıkaracak stratejiler geliştiriyoruz.</p>
+      </div>
+      <div class="service-card">
+        <h3>Destek & Bakım</h3>
+        <p>Projelerinizin sürekliliği için 7/24 destek ve bakım hizmeti sağlıyoruz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="references">
+  <div class="container">
+    <h2>Referanslar</h2>
+    <div class="refs-container">
+      <div class="ref-card">
+        <p>"KurumsalCo ile çalışmak, işimizi bir üst seviyeye taşıdı. Profesyonel ve güvenilir bir ekip."</p>
+        <div class="person">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ahmet" />
+          <span>Ahmet Y.</span>
+        </div>
+      </div>
+      <div class="ref-card">
+        <p>"Proje yönetimi ve destek hizmetleri mükemmel. Tavsiye ederim."</p>
+        <div class="person">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ece" />
+          <span>Ece K.</span>
+        </div>
+      </div>
+      <div class="ref-card">
+        <p>"Hizmet kalitesi ve iletişim çok iyiydi. İşbirliğimiz uzun soluklu olacak."</p>
+        <div class="person">
+          <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="Mehmet" />
+          <span>Mehmet T.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2>İletişim</h2>
+    <form id="contactForm" novalidate>
+      <input type="text" id="name" name="name" placeholder="Adınız" required minlength="2" />
+      <input type="email" id="email" name="email" placeholder="E-posta adresiniz" required />
+      <textarea id="message" name="message" rows="5" placeholder="Mesajınız" required minlength="10"></textarea>
+      <button type="submit">Gönder</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 şanlı yazılım tüm hakları saklıdır.</p>
+  <p>
+    <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">🔗</a>
+    <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">🐦</a>
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">📘</a>
+  </p>
+</footer>
 
 <script>
-  // Orijinal ürün verisi (8 ürün)
-  const baseProducts = [
-    {
-      id: 1,
-      name: "Mavi Spor Ayakkabı",
-      description: "Rahat ve şık mavi spor ayakkabılar, günlük kullanım için ideal.",
-      price: 250,
-      image: "https://picsum.photos/id/1018/300/200"
-    },
-    {
-      id: 2,
-      name: "Kadın Siyah Elbise",
-      description: "Klasik kesim, zarif siyah elbise, özel günler için mükemmel.",
-      price: 400,
-      image: "https://picsum.photos/id/1027/300/200"
-    },
-    {
-      id: 3,
-      name: "Bluetooth Kulaklık",
-      description: "Yüksek kaliteli ses, uzun pil ömrü ile kablosuz kulaklık.",
-      price: 150,
-      image: "https://picsum.photos/id/1044/300/200"
-    },
-    {
-      id: 4,
-      name: "Erkek Kot Pantolon",
-      description: "Dayanıklı ve rahat erkek kot pantolonu, her mevsime uygun.",
-      price: 300,
-      image: "https://picsum.photos/id/1032/300/200"
-    },
-    {
-      id: 5,
-      name: "Smartwatch",
-      description: "Adım sayar, nabız ölçer ve bildirim özelliği ile modern saat.",
-      price: 600,
-      image: "https://picsum.photos/id/1041/300/200"
-    },
-    {
-      id: 6,
-      name: "Sırt Çantası",
-      description: "Geniş hacimli, su geçirmez sırt çantası, seyahat için ideal.",
-      price: 180,
-      image: "https://picsum.photos/id/1050/300/200"
-    },
-    {
-      id: 7,
-      name: "Kahve Makinesi",
-      description: "Hızlı ve pratik kahve makinesi, evde kafe lezzeti.",
-      price: 850,
-      image: "https://picsum.photos/id/1060/300/200"
-    },
-    {
-      id: 8,
-      name: "Güneş Gözlüğü",
-      description: "UV korumalı, modern tasarımlı güneş gözlüğü.",
-      price: 120,
-      image: "https://picsum.photos/id/1074/300/200"
-    }
-  ];
-
-  // Her orijinal üründen 10 tane çoğaltarak toplam 80 ürün elde et
-  const products = [];
-  baseProducts.forEach(prod => {
-    for(let i=1; i<=10; i++) {
-      products.push({
-        id: prod.id * 100 + i, // id: 101, 102,... vs
-        name: prod.name + (i > 1 ? ` (${i})` : ""),
-        description: prod.description,
-        price: prod.price,
-        image: prod.image
-      });
-    }
+  // Hamburger menu toggle
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
   });
 
-  const productsGrid = document.getElementById('products-grid');
-  const cartToggleBtn = document.querySelector('.cart-toggle');
-  const darkModeToggleBtn = document.querySelector('.dark-mode-toggle');
-  const cartElement = document.getElementById('cart');
-  const cartItemsContainer = document.getElementById('cart-items');
-  const cartTotal = document.getElementById('cart-total');
-  const cartCount = document.getElementById('cart-count');
+  // Smooth scroll & active menu
+  const sections = document.querySelectorAll("section");
+  const navItems = document.querySelectorAll("nav ul li a");
 
-  // Sepet objesi: { ürünID: adet }
-  let cart = {};
-
-  // Ürünleri listele
-  function renderProducts() {
-    productsGrid.innerHTML = "";
-    products.forEach(product => {
-      const card = document.createElement('article');
-      card.className = "product-card";
-      card.innerHTML = `
-        <img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy" />
-        <h3 class="product-name">${product.name}</h3>
-        <p class="product-desc">${product.description}</p>
-        <div class="product-price">${product.price.toLocaleString('tr-TR')} ₺</div>
-        <button class="btn-add" data-id="${product.id}">Sepete Ekle</button>
-      `;
-      productsGrid.appendChild(card);
+  function onScroll() {
+    let scrollPos = window.scrollY + 100;
+    sections.forEach((section) => {
+      if (
+        scrollPos >= section.offsetTop &&
+        scrollPos < section.offsetTop + section.offsetHeight
+      ) {
+        navItems.forEach((a) => a.classList.remove("active"));
+        const id = section.getAttribute("id");
+        const activeLink = document.querySelector(`nav ul li a[href="#${id}"]`);
+        if (activeLink) activeLink.classList.add("active");
+        section.classList.add("visible");
+      }
     });
   }
-
-  // Sepeti güncelle
-  function renderCart() {
-    cartItemsContainer.innerHTML = "";
-    let total = 0;
-    let totalCount = 0;
-    for (const id in cart) {
-      const quantity = cart[id];
-      if(quantity <= 0) continue;
-      const product = products.find(p => p.id == id);
-      if (!product) continue;
-
-      total += product.price * quantity;
-      totalCount += quantity;
-
-      const itemDiv = document.createElement('div');
-      itemDiv.className = "cart-item";
-      itemDiv.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" loading="lazy"/>
-        <div class="cart-item-details">
-          <div class="cart-item-name">${product.name}</div>
-          <div class="cart-item-price">${(product.price * quantity).toLocaleString('tr-TR')} ₺</div>
-        </div>
-        <div class="cart-item-quantity">x${quantity}</div>
-        <button class="cart-item-remove" data-id="${id}" aria-label="Ürünü kaldır">×</button>
-      `;
-      cartItemsContainer.appendChild(itemDiv);
-    }
-    cartTotal.textContent = `Toplam: ${total.toLocaleString('tr-TR')} ₺`;
-    cartCount.textContent = totalCount;
-  }
-
-  // Ürün ekle
-  function addToCart(id) {
-    if (!cart[id]) {
-      cart[id] = 0;
-    }
-    cart[id]++;
-    renderCart();
-  }
-
-  // Ürün çıkar
-  function removeFromCart(id) {
-    if (cart[id]) {
-      cart[id]--;
-      if(cart[id] <= 0) {
-        delete cart[id];
-      }
-      renderCart();
-    }
-  }
-
-  // Karanlık mod aç/kapa
-  function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    // Tercih olarak localStorage'a kaydet
-    if(document.body.classList.contains('dark-mode')) {
-      localStorage.setItem('dark-mode', 'enabled');
-    } else {
-      localStorage.setItem('dark-mode', 'disabled');
-    }
-  }
-
-  // LocalStorage'dan karanlık mod durumu kontrolü
-  function loadDarkModeSetting() {
-    if(localStorage.getItem('dark-mode') === 'enabled') {
-      document.body.classList.add('dark-mode');
-    }
-  }
-
-  // Event listenerlar
-  document.addEventListener('click', (e) => {
-    if(e.target.classList.contains('btn-add')) {
-      const id = e.target.getAttribute('data-id');
-      addToCart(id);
-    }
-    if(e.target.classList.contains('cart-item-remove')) {
-      const id = e.target.getAttribute('data-id');
-      removeFromCart(id);
-    }
-    if(e.target === cartToggleBtn) {
-      cartElement.classList.toggle('active');
-    }
-    if(e.target === darkModeToggleBtn) {
-      toggleDarkMode();
-    }
-    if(e.target.classList.contains('cart-close-btn')) {
-      cartElement.classList.remove('active');
-    }
+  window.addEventListener("scroll", onScroll);
+  window.addEventListener("load", () => {
+    onScroll();
+    // Show first section on load
+    document.querySelector("section.visible").classList.add("visible");
   });
 
-  // İlk render
-  renderProducts();
-  renderCart();
-  loadDarkModeSetting();
-</script>
+  // Contact form validation & alert (basic)
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = this.name.value.trim();
+    const email = this.email.value.trim();
+    const message = this.message.value.trim();
 
+    if (name.length < 2) {
+      alert("Lütfen geçerli bir ad giriniz.");
+      return;
+    }
+    if (!email.includes("@") || email.length < 5) {
+      alert("Lütfen geçerli bir e-posta adresi giriniz.");
+      return;
+    }
+    if (message.length < 10) {
+      alert("Mesajınız en az 10 karakter olmalı.");
+      return;
+    }
+    alert("Mesajınız başarıyla gönderildi. Teşekkürler!");
+    this.reset();
+  });
+  const toggleBtn = document.getElementById('darkModeToggle');
+const body = document.body;
+
+toggleBtn.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  
+  // Buton yazısını değiştir (isteğe bağlı)
+  if(body.classList.contains('dark-mode')){
+    toggleBtn.textContent = 'Açık Mod';
+  } else {
+    toggleBtn.textContent = 'Karanlık Mod';
+  }
+});
+
+
+</script>
 </body>
 </html>
